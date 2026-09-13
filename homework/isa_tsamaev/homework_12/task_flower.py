@@ -53,28 +53,23 @@ class Bouquet:
 
     def sort_by_freshness(self):
         self.flowers.sort(key=lambda flower: flower.freshness, reverse=True)
-        result = "\n".join(map(str, self.flowers))
-        return f"Сортировка по свежести цветов:\n{result}"
+        return self.flowers
 
     def sort_by_color(self):
         self.flowers.sort(key=lambda flower: flower.color)
-        result = "\n".join(map(str, self.flowers))
-        return f"Сортировка по цвету:\n{result}"
+        return self.flowers
 
     def sort_by_stem_length(self):
         self.flowers.sort(key=lambda flower: flower.stem_length)
-        result = "\n".join(map(str, self.flowers))
-        return f"Сортировка по длине стебля:\n{result}"
+        return self.flowers
 
     def sort_by_price(self):
         self.flowers.sort(key=lambda flower: flower.price)
-        result = "\n".join(map(str, self.flowers))
-        return f"Сортировка по цене:\n{result}"
+        return self.flowers
 
-    def search_by_color(self):
-        input_color = input("Введите цвет: ")
+    def search_by_color(self, color):
         result = list(filter(
-            lambda flower: flower.color.lower() == input_color.lower(),
+            lambda flower: flower.color.lower() == color.lower(),
             self.flowers
         ))
         flowers_result = "\n".join(map(str, result))
@@ -101,4 +96,4 @@ print(bouquet.sort_by_color())
 print(bouquet.sort_by_price())
 print(bouquet.sort_by_stem_length())
 print(bouquet.sort_by_freshness())
-print(bouquet.search_by_color())
+print(bouquet.search_by_color("pink"))
