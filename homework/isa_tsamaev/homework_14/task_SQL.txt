@@ -1,0 +1,65 @@
+INSERT INTO students (name,second_name)
+VALUES ('Alexey','Voronov')
+
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES
+('Python Programming: An Introduction to Computer Science', 23219),
+('Software Testing Fundamentals', 23219)
+
+
+INSERT INTO `groups` (title, start_date, end_date)
+VALUES ('Python_Automation_2026', 'Sep 2026', 'Mar 2027')
+
+
+UPDATE students s SET group_id = 23171
+WHERE s.id = 23219
+
+
+INSERT INTO subjects (title)
+VALUES
+('Computational Systems Analysis'),
+('Software Reliability Theory')
+
+
+INSERT INTO lessons (title, subject_id)
+VALUES
+('Failure Probability Analysis', 23444),
+('Reliability Metrics and Prediction', 23444),
+('System Modeling and Complexity', 23443),
+('Computational Process Evaluation', 23443)
+
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES
+('10', 76948, 23219),
+('10', 76949, 23219),
+('8', 76947, 23219),
+('5', 76946, 23219)
+
+
+===================================
+
+SELECT m.value
+from marks m
+WHERE m.student_id = 23219
+
+
+SELECT b.title
+FROM books b
+where b.taken_by_student_id = 23219
+
+
+SELECT gr.title as "Group",
+b.title as "Books",
+sub.title as "Subject",
+les.title as "Lesson",
+mar.value as "Marks"
+FROM subjects sub
+JOIN lessons les ON sub.id = les.subject_id
+JOIN marks mar ON les.id = mar.lesson_id
+JOIN students stud ON mar.student_id = stud.id
+JOIN `groups` gr ON stud.group_id = gr.id
+LEFT JOIN books b on stud.id = b.taken_by_student_id
+where stud.id = 23219
+
